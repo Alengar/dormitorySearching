@@ -1,0 +1,100 @@
+.container {
+    width: 1200px;
+    height: 480px;
+    margin: 0 auto;
+    display: flex;
+    grid-gap: 40px;
+}
+
+.dorms {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #dcdcdc;
+}
+
+.dorm {
+    padding: 12px 20px;
+    border-bottom: 1px solid #dcdcdc;
+    transition: 0.2s ease;
+
+    &:hover {
+        cursor: pointer;
+        background: #f6f6f6;
+    }
+}
+
+.chat {
+    flex: 1;
+    border: 1px solid #dcdcdc;
+}
+
+.loader {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    padding: 12px 24px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.body {
+    padding: 16px;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.messages {
+    padding-right: 16px;
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.message {
+    background: #dcdcdc;
+    padding: 8px 16px;
+    border-radius: 20px;
+
+    &__active {
+        background: #E32636;
+    }
+
+    &-wrapper {
+        display: flex;
+        justify-content: flex-end;
+
+        &__active {
+            justify-content: flex-start;
+        }
+    }
+}
+
+.textarea {
+    padding: 12px 24px;
+    border: 1px solid #dcdcdc;
+    resize: none;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 24px;
+    border-top: 1px solid #dcdcdc;
+}

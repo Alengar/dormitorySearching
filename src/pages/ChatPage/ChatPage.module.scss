@@ -1,0 +1,183 @@
+$primaryColor: hsl(348, 92%, 38%);
+$secondaryColor: hsl(180, 17%, 95%);
+$colorOne: hsl(15, 74%, 70%);
+$colorTwo: hsl(68, 85%, 35%);
+$hoverColor: hsl(225, 56%, 59%);
+$whiteColor: hsl(0, 0%, 100%);
+$blackColor: hsl(0, 0%, 12%);
+$textColor: hsl(240, 1%, 48%);
+$borderColor: hsl(0, 0%, 83%);
+$whiteColorDim: hsl(0, 0%, 93%);
+$grayBg: hsl(0, 0%, 96%);
+$grayText: rgb(145, 145, 145);
+$inputColor: hsl(330, 12%, 97%);
+$boxShadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+$transition: 0.4s ease;
+
+.container {
+  width: 1200px;
+  height: 480px;
+  margin: 0 auto;
+  display: flex;
+  grid-gap: 40px;
+  background-color: $grayBg;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: $boxShadow;
+}
+
+.dorms {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $borderColor;
+  background-color: $whiteColor;
+  border-radius: 10px;
+  box-shadow: $boxShadow;
+  overflow-y: auto;
+}
+
+.dorm {
+  padding: 12px 20px;
+  border-bottom: 1px solid $borderColor;
+  transition: $transition;
+
+  &:hover {
+    cursor: pointer;
+    background: $hoverColor;
+    color: $whiteColor;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: $textColor;
+  }
+
+  p {
+    margin: 0;
+    color: $grayText;
+  }
+}
+
+.chat {
+  flex: 1;
+  border: 1px solid $borderColor;
+  background-color: $whiteColor;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: $boxShadow;
+}
+
+.loader {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  padding: 12px 24px;
+  border-bottom: 1px solid $borderColor;
+  background-color: $primaryColor;
+  color: $whiteColor;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+}
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.body {
+  padding: 16px;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: $grayBg;
+}
+
+.messages {
+  padding-right: 16px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  background: $borderColor;
+  padding: 8px 16px;
+  border-radius: 20px;
+
+  &__active {
+    background: $primaryColor;
+    color: $whiteColor;
+  }
+
+  &-wrapper {
+    display: flex;
+    justify-content: flex-end;
+
+    &__active {
+      justify-content: flex-start;
+    }
+  }
+}
+
+.textarea {
+  padding: 12px 24px;
+  border: 1px solid $borderColor;
+  border-radius: 5px;
+  resize: none;
+  background-color: $inputColor;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 24px;
+  border-top: 1px solid $borderColor;
+  background-color: $secondaryColor;
+  border-radius: 0 0 10px 10px;
+
+  textarea {
+    flex: 1;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  label {
+    cursor: pointer;
+    background-color: $primaryColor;
+    color: $whiteColor;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin-right: 1rem;
+    text-align: center;
+  }
+
+  button {
+    background-color: $primaryColor;
+    color: $whiteColor;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background-color: darken($primaryColor, 10%);
+    }
+  }
+}

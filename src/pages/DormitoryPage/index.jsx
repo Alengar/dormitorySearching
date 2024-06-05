@@ -16,6 +16,7 @@ import Loader from "@components/Loader";
 import styles from "./DormitoryPage.module.scss";
 import useAuth from "@hooks/useAuth";
 import { FaRadio } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 
 export default function DormitoryPage() {
   const { isAuth } = useAuth();
@@ -35,13 +36,52 @@ export default function DormitoryPage() {
   const [sortOrder, setSortOrder] = useState("desc");
   const [filterOption, setFilterOption] = useState("all");
 
+  const [chats, setChats] = useState([]);
+  const [message, setMessage] = useState("");
+  const [file, setFile] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsLoading, setModalIsLoading] = useState(false);
+
+  const user = useSelector((state) => state.user.user);
+
+  async function createChat(e) {
+    e.preventDefault();
+    try {
+      setModalIsLoading(true);
+      const formData = new FormData();
+      formData.append("message", message);
+      if (file) {
+        formData.append("file", file);
+      }
+      console.log({ message, file });
+      await axiosInstance.post(`/chat/create/${dorm._id}`, formData, {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      });
+      alert("Success!");
+      setModalIsOpen(false);
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setModalIsLoading(false);
+    }
+  }
+
   useEffect(() => {
     const fetchDorm = async () => {
       try {
         setIsLoading(true);
-        const res = await axiosInstance.get(`/dorm/${slug}`);
-        setDorm(res.data);
-        setReviews(res.data.reviews);
+        const dormRes = await axiosInstance.get(`/dorm/${slug}`);
+        setDorm(dormRes.data);
+        setReviews(dormRes.data.reviews);
+        const chatRes = await axiosInstance.get(`/chat/user/${user._id}`, {
+          headers: {
+            Authorization: localStorage.getItem("token")
+          }
+        });
+        console.log(chatRes);
+        setChats(chatRes.data);
       } catch (error) {
         alert(error.message);
       } finally {
@@ -158,10 +198,37 @@ export default function DormitoryPage() {
     hasDailyCleaner: <FaBroom />
   };
 
+  function openModal() {
+    setModalIsOpen(true);
+  }
+  function closeModal(e) {
+    if (e.target.className.includes("shadow")) {
+      setModalIsOpen(false);
+    }
+  }
+
   return (
     <div className={styles.dormitoryPage}>
       {dorm && (
         <>
+          {modalIsOpen && (
+            <div className={styles.shadow} onClick={closeModal}>
+              <div className={styles.modal}>
+                <form onSubmit={createChat}>
+                  <textarea
+                    type="text"
+                    placeholder="Enter message..."
+                    onChange={(e) => setMessage(e.target.value)}
+                    className={styles["modal-textarea"]}
+                  />
+                  <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+                  <button type="submit" className={styles["modal-btn"]}>
+                    {modalIsLoading ? <Loader /> : "Send"}
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
           <div className={styles.imageGallery}>
             <img
               src={dorm?.previewImageUrl}
@@ -374,7 +441,13 @@ export default function DormitoryPage() {
                   <span>Location:</span> {dorm.location}
                 </p>
               </div>
-              <button className={styles.chatButton}>Chat</button>
+              {chats.find((item) => item.dormId === dorm._id) ? (
+                <p>You already have a chat</p>
+              ) : (
+                <button className={styles.chatButton} onClick={openModal}>
+                  Chat
+                </button>
+              )}
               <div className={styles.contactInfo}>
                 <p>
                   <span>Email:</span> {dorm.workEmail}

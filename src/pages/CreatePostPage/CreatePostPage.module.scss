@@ -1,0 +1,58 @@
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.label {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 600;
+}
+
+.input {
+    width: 100%;
+    padding: 12px 24px;
+    border: 1px solid #dcdcdc;
+    resize: none;
+}
+
+.textarea {
+    height: 180px;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.file {
+    display: none;
+  }
+  
+.btn {
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding: 8px 18px;
+    background: #E32636;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 16px;
+    transition: 0.2s ease;
+
+    &:hover {
+        cursor: pointer;
+        background: rgba(#E32636, 0.9);
+    }
+}
+
+.preview {
+    width: 100%;
+}

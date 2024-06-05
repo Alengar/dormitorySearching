@@ -21,8 +21,18 @@ import {
   LOGIN_PAGE_ROUTE,
   MY_ACCOUNT_PAGE_ROUTE,
   REGISTER_PAGE_ROUTE,
-  COMPARING_PAGE_ROUTE
+  COMPARING_PAGE_ROUTE,
+  CHAT_PAGE_ROUTE,
+  MANAGER_CHAT_PAGE_ROUTE,
+  BLOG_PAGE_ROUTE,
+  CREATE_POST_PAGE_ROUTE,
+  POST_PAGE_ROUTE
 } from "./consts";
+import ChatPage from "@pages/ChatPage";
+import ManagerChatPage from "@pages/ManagerChatPage";
+import BlogPage from "@pages/BlogPage";
+import CreatePostPage from "@pages/CreatePostPage";
+import PostPage from "@pages/PostPage";
 
 export const routes = [
   {
@@ -68,6 +78,26 @@ export const routes = [
   {
     path: COMPARING_PAGE_ROUTE,
     element: ComparingPage
+  },
+  {
+    path: CHAT_PAGE_ROUTE,
+    element: ChatPage
+  },
+  {
+    path: MANAGER_CHAT_PAGE_ROUTE,
+    element: ManagerChatPage
+  },
+  {
+    path: BLOG_PAGE_ROUTE,
+    element: BlogPage
+  },
+  {
+    path: CREATE_POST_PAGE_ROUTE,
+    element: CreatePostPage
+  },
+  {
+    path: POST_PAGE_ROUTE,
+    element: PostPage
   },
   {
     path: "*",
