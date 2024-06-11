@@ -1,16 +1,264 @@
-.container {
-    width: 1200px;
-    margin: 0 auto;
-}
+$primaryColor: hsl(348, 92%, 38%);
+$secondaryColor: hsl(180, 17%, 95%);
+$whiteColor: hsl(0, 0%, 100%);
+$blackColor: hsl(0, 0%, 12%);
+$textColor: hsl(240, 1%, 48%);
+$grayText: rgb(145, 145, 145);
+$borderColor: hsl(0, 0%, 83%);
+$boxShadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+$transition: 0.4s ease;
 
-.image {
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: $whiteColor;
+  box-shadow: $boxShadow;
+  border-radius: 8px;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+
+  .backLink {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: $primaryColor;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .image {
     width: 100%;
     margin-bottom: 16px;
-}
+    border-radius: 8px;
+    object-fit: cover;
+  }
 
-.title {
-    font-size: 28px;
-    line-height: 36px;
+  .title {
+    font-size: 32px;
+    line-height: 40px;
     font-weight: 700;
+    color: $blackColor;
     margin-bottom: 16px;
+
+    @media (max-width: 768px) {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+
+  .date {
+    font-size: 14px;
+    color: $grayText;
+    margin-bottom: 16px;
+  }
+
+  .author {
+    font-size: 16px;
+    color: $grayText;
+    margin-bottom: 16px;
+  }
+
+  .content {
+    font-size: 18px;
+    line-height: 28px;
+    color: $textColor;
+    margin-bottom: 24px;
+
+    p {
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-size: 24px;
+      line-height: 32px;
+      font-weight: 600;
+    }
+
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 14px;
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 600;
+    }
+
+    ul,
+    ol {
+      margin-bottom: 16px;
+      padding-left: 20px;
+    }
+
+    blockquote {
+      margin: 20px 0;
+      padding: 10px 20px;
+      background-color: $secondaryColor;
+      border-left: 5px solid $primaryColor;
+      font-style: italic;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    iframe {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+
+    .tag {
+      background-color: $primaryColor;
+      color: $whiteColor;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+  }
+
+  .commentsSection {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: $secondaryColor;
+    border-radius: 8px;
+
+    h2 {
+      font-size: 24px;
+      line-height: 32px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: $blackColor;
+    }
+
+    .commentForm {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+
+      .commentInput {
+        padding: 10px;
+        border: 1px solid $borderColor;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        resize: vertical;
+        min-height: 100px;
+        font-size: 16px;
+        background-color: $whiteColor;
+      }
+
+      .commentButton {
+        padding: 10px 20px;
+        background-color: $primaryColor;
+        color: $whiteColor;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken($primaryColor, 10%);
+        }
+      }
+    }
+
+    .commentsList {
+      margin-top: 20px;
+
+      .comment {
+        padding: 15px;
+        background-color: $whiteColor;
+        border-radius: 8px;
+        box-shadow: $boxShadow;
+        margin-bottom: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -2px;
+        }
+
+        .commentHeader {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+
+          .commentInfo {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .commentAuthor {
+            font-size: 16px;
+            font-weight: 600;
+            color: $blackColor;
+          }
+
+          .commentDate {
+            font-size: 14px;
+            color: $grayText;
+          }
+        }
+
+        .commentText {
+          font-size: 16px;
+          color: $textColor;
+        }
+      }
+    }
+  }
+
+  .interactions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+
+    .likeButton {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: $primaryColor;
+      color: $whiteColor;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken($primaryColor, 10%);
+      }
+
+      .likeIcon {
+        margin-right: 8px;
+      }
+    }
+
+    .shareButtons {
+      a {
+        margin-left: 10px;
+        color: $primaryColor;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 }

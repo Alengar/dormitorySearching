@@ -1,0 +1,152 @@
+$primaryColor: hsl(348, 92%, 38%);
+$secondaryColor: hsl(180, 17%, 95%);
+$colorOne: hsl(15, 74%, 70%);
+$colorTwo: hsl(68, 85%, 35%);
+$hoverColor: hsl(225, 56%, 59%);
+$whiteColor: hsl(0, 0%, 100%);
+$blackColor: hsl(0, 0%, 12%);
+$textColor: hsl(240, 1%, 48%);
+$borderColor: hsl(0, 0%, 83%);
+$whiteColorDim: hsl(0, 0%, 93%);
+$grayBg: hsl(0, 0%, 96%);
+$grayText: rgb(145, 145, 145);
+$inputColor: hsl(330, 12%, 97%);
+$boxShadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+$transition: 0.4s ease;
+
+.account-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: $secondaryColor;
+  border-radius: 10px;
+  box-shadow: $boxShadow;
+  max-width: 400px;
+  margin: auto;
+
+  .account-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .profile-picture {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      transition: transform $transition;
+
+      &:hover {
+        label {
+          opacity: 1;
+        }
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 2px solid $primaryColor;
+        border-radius: 50%;
+      }
+
+      label {
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s ease;
+
+        svg {
+          font-size: 36px;
+          color: $borderColor;
+        }
+      }
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    h2 {
+      font-size: 24px;
+      color: $primaryColor;
+      margin: 0;
+    }
+  }
+
+  .account-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 2rem;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      width: 100%;
+
+      strong {
+        margin-bottom: 0.5rem;
+        color: $primaryColor;
+      }
+
+      input {
+        padding: 0.5rem;
+        border: 1px solid $borderColor;
+        border-radius: 4px;
+        width: 100%;
+        background-color: $inputColor;
+        color: $textColor;
+      }
+    }
+
+    p {
+      font-size: 16px;
+      color: $textColor;
+      margin: 5px 0;
+
+      strong {
+        color: $primaryColor;
+      }
+    }
+  }
+
+  .edit-button,
+  .save-button,
+  .logout-button {
+    background-color: $primaryColor;
+    color: $whiteColor;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color $transition;
+    margin-top: 10px;
+
+    &:hover {
+      background-color: darken($primaryColor, 10%);
+    }
+  }
+
+  .logout-button {
+    margin-top: 5px;
+  }
+}
+
+.input-file {
+  display: none;
+}

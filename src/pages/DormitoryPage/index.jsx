@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   FaStar,
@@ -17,6 +17,7 @@ import styles from "./DormitoryPage.module.scss";
 import useAuth from "@hooks/useAuth";
 import { FaRadio } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import Notification from "./Notification";
 
 export default function DormitoryPage() {
   const { isAuth } = useAuth();
@@ -41,6 +42,7 @@ export default function DormitoryPage() {
   const [file, setFile] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIsLoading, setModalIsLoading] = useState(false);
+  const [notification, setNotification] = useState(null);
 
   const user = useSelector((state) => state.user.user);
 
@@ -59,10 +61,10 @@ export default function DormitoryPage() {
           Authorization: localStorage.getItem("token")
         }
       });
-      alert("Success!");
+      setNotification("Success!");
       setModalIsOpen(false);
     } catch (error) {
-      alert(error.message);
+      setNotification(error.message);
     } finally {
       setModalIsLoading(false);
     }
@@ -73,6 +75,7 @@ export default function DormitoryPage() {
       try {
         setIsLoading(true);
         const dormRes = await axiosInstance.get(`/dorm/${slug}`);
+        console.log(dormRes.data); // Log the fetched dorm data
         setDorm(dormRes.data);
         setReviews(dormRes.data.reviews);
         const chatRes = await axiosInstance.get(`/chat/user/${user._id}`, {
@@ -83,7 +86,7 @@ export default function DormitoryPage() {
         console.log(chatRes);
         setChats(chatRes.data);
       } catch (error) {
-        alert(error.message);
+        setNotification(error.message);
       } finally {
         setIsLoading(false);
       }
@@ -101,7 +104,7 @@ export default function DormitoryPage() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [slug]);
+  }, [slug, user._id]);
 
   const addReview = async (e) => {
     e.preventDefault();
@@ -117,7 +120,7 @@ export default function DormitoryPage() {
       setDorm(res.data);
       setReviews(res.data.reviews);
     } catch (error) {
-      alert(error.message);
+      setNotification(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -214,6 +217,7 @@ export default function DormitoryPage() {
           {modalIsOpen && (
             <div className={styles.shadow} onClick={closeModal}>
               <div className={styles.modal}>
+                <div className={styles["modal-header"]}>Start a Chat</div>
                 <form onSubmit={createChat}>
                   <textarea
                     type="text"
@@ -221,13 +225,20 @@ export default function DormitoryPage() {
                     onChange={(e) => setMessage(e.target.value)}
                     className={styles["modal-textarea"]}
                   />
-                  <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+                  <input
+                    type="file"
+                    onChange={(e) => setFile(e.target.files[0])}
+                    className={styles["modal-file-input"]}
+                  />
                   <button type="submit" className={styles["modal-btn"]}>
                     {modalIsLoading ? <Loader /> : "Send"}
                   </button>
                 </form>
               </div>
             </div>
+          )}
+          {notification && (
+            <Notification message={notification} onClose={() => setNotification(null)} />
           )}
           <div className={styles.imageGallery}>
             <img
@@ -273,7 +284,7 @@ export default function DormitoryPage() {
               <div className={styles.amenities}>
                 <h3>Amenities</h3>
                 <div className={styles.amenitiesList}>
-                  {Object.entries(dorm.amenties).map(
+                  {Object.entries(dorm.amenties || {}).map(
                     ([key, value], index) =>
                       value && (
                         <div key={index} className={styles.amenity}>

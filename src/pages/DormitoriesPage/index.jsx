@@ -162,15 +162,16 @@ export default function DormitoriesPage() {
 
     return 0;
   });
-  console.log(dormitories);
+
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentDormitories = sortedDormitories.slice(startIndex, startIndex + itemsPerPage);
 
   const totalPages = Math.ceil(sortedDormitories.length / itemsPerPage);
 
+  console.log(dormitories);
   return (
     <div>
-      <h1 className={styles.title}>Dormitories</h1>
+      <h1 className={styles.title}>Dormitories and Hostels</h1>
       <div className={styles.container}>
         <div>
           <input

@@ -591,3 +591,119 @@ $transition: 0.4s ease;
     align-items: center;
   }
 }
+
+.shadow {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: 500px;
+  max-width: 90%;
+  background: $whiteColor;
+  padding: 24px 36px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $whiteColor;
+    border-radius: 16px;
+    opacity: 0.95;
+    z-index: -1;
+  }
+
+  &-header {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: $textColor;
+    margin-bottom: 16px;
+  }
+
+  &-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid $borderColor;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    color: $textColor;
+    margin-bottom: 16px;
+    transition: border-color $transition;
+
+    &:focus {
+      border-color: $primaryColor;
+      outline: none;
+    }
+  }
+
+  &-file-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid $borderColor;
+    border-radius: 8px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: $textColor;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: border-color $transition;
+
+    &:hover {
+      border-color: $primaryColor;
+    }
+  }
+
+  &-btn {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 8px;
+    background: $primaryColor;
+    color: $whiteColor;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    transition: background $transition, transform $transition;
+
+    &:hover {
+      background: darken($primaryColor, 10%);
+      transform: scale(1.05);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,101 @@
+$primaryColor: hsl(348, 92%, 38%);
+$secondaryColor: hsl(180, 17%, 95%);
+$colorOne: hsl(15, 74%, 70%);
+$colorTwo: hsl(68, 85%, 35%);
+$hoverColor: hsl(225, 56%, 59%);
+$whiteColor: hsl(0, 0%, 100%);
+$blackColor: hsl(0, 0%, 12%);
+$textColor: hsl(240, 1%, 48%);
+$borderColor: hsl(0, 0%, 83%);
+$whiteColorDim: hsl(0, 0%, 93%);
+$grayBg: hsl(0, 0%, 96%);
+$grayText: rgb(145, 145, 145);
+$inputColor: hsl(330, 12%, 97%);
+$boxShadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+$transition: 0.4s ease;
+
+.footer {
+    background: $secondaryColor;
+    padding: 50px 0;
+    color: $textColor;
+    font-family: 'Roboto', sans-serif;
+  
+    .sectionContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+  
+      .gridOne {
+        text-align: center;
+  
+        p {
+          margin: 20px 0;
+          font-size: 1.2rem;
+          line-height: 1.5;
+        }
+  
+        .socialIcon {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+  
+          .icon {
+            font-size: 2rem;
+            color: $primaryColor;
+            transition: transform $transition, color $transition;
+  
+            &:hover {
+              color: $hoverColor;
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
+  
+      .footerLinks {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+  
+        .linkTitle {
+          font-weight: bold;
+          margin-bottom: 20px;
+          font-size: 1.4rem;
+          color: $primaryColor;
+        }
+  
+        ul {
+          list-style: none;
+          padding: 0;
+  
+          li {
+            margin: 10px 0;
+  
+            a {
+              text-decoration: none;
+              color: $textColor;
+              transition: color $transition;
+  
+              &:hover {
+                color: $hoverColor;
+              }
+            }
+          }
+        }
+      }
+  
+      @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+        .footerLinks {
+          align-items: flex-start;
+          text-align: left;
+        }
+      }
+    }
+  }
+  

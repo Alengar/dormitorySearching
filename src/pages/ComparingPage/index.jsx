@@ -58,48 +58,48 @@ const ComparingPage = () => {
   const comparisonData = [
     {
       attribute: "Location",
-      firstValue: firstSelectedDorm?.location || "",
-      secondValue: secondSelectedDorm?.location || ""
+      firstValue: firstSelectedDorm?.location || "N/A",
+      secondValue: secondSelectedDorm?.location || "N/A"
     },
     {
       attribute: "City",
-      firstValue: firstSelectedDorm?.city || "",
-      secondValue: secondSelectedDorm?.city || ""
+      firstValue: firstSelectedDorm?.city || "N/A",
+      secondValue: secondSelectedDorm?.city || "N/A"
     },
     {
       attribute: "Price",
-      firstValue: `${firstSelectedDorm?.price || ""} ₸`,
-      secondValue: `${secondSelectedDorm?.price || ""} ₸`
+      firstValue: `${firstSelectedDorm?.price || "N/A"} ₸`,
+      secondValue: `${secondSelectedDorm?.price || "N/A"} ₸`
     },
     {
       attribute: "Description",
-      firstValue: firstSelectedDorm?.description || "",
-      secondValue: secondSelectedDorm?.description || ""
+      firstValue: firstSelectedDorm?.description || "N/A",
+      secondValue: secondSelectedDorm?.description || "N/A"
     },
     {
       attribute: "Capacity",
-      firstValue: firstSelectedDorm?.capacity || "",
-      secondValue: secondSelectedDorm?.capacity || ""
+      firstValue: firstSelectedDorm?.capacity || "N/A",
+      secondValue: secondSelectedDorm?.capacity || "N/A"
     },
     {
       attribute: "Size",
-      firstValue: `${firstSelectedDorm?.size || ""} sq.m`,
-      secondValue: `${secondSelectedDorm?.size || ""} sq.m`
+      firstValue: `${firstSelectedDorm?.size || "N/A"} sq.m`,
+      secondValue: `${secondSelectedDorm?.size || "N/A"} sq.m`
     },
     {
       attribute: "Work Email",
-      firstValue: firstSelectedDorm?.workEmail || "",
-      secondValue: secondSelectedDorm?.workEmail || ""
+      firstValue: firstSelectedDorm?.workEmail || "N/A",
+      secondValue: secondSelectedDorm?.workEmail || "N/A"
     },
     {
       attribute: "Phone Number",
-      firstValue: firstSelectedDorm?.phoneNumber || "",
-      secondValue: secondSelectedDorm?.phoneNumber || ""
+      firstValue: firstSelectedDorm?.phoneNumber || "N/A",
+      secondValue: secondSelectedDorm?.phoneNumber || "N/A"
     },
     {
       attribute: "Extras",
-      firstValue: firstSelectedDorm?.extras.join(", ") || "",
-      secondValue: secondSelectedDorm?.extras.join(", ") || ""
+      firstValue: firstSelectedDorm?.extras.join(", ") || "N/A",
+      secondValue: secondSelectedDorm?.extras.join(", ") || "N/A"
     },
     {
       attribute: "WiFi",
@@ -156,7 +156,7 @@ const ComparingPage = () => {
   return (
     <>
       <div className="comparing">
-        <h2>Dormitories list</h2>
+        <h2>Dormitories List</h2>
         <div className="comparing-grid">
           {currentDorms.map((item) => (
             <div key={item._id} className="comparing-item">

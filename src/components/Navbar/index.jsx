@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useAuth from "@hooks/useAuth";
 import {
@@ -13,40 +13,62 @@ import {
   MY_ACCOUNT_PAGE_ROUTE
 } from "@utils/consts";
 import styles from "./Navbar.module.scss";
-
 import logo from "@assets/logo_dorm.png";
 
 export default function Navbar() {
   const { isAuth } = useAuth();
   const user = useSelector((state) => state.user.user);
+  const location = useLocation();
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
         <div className={styles.logo}>
           <img src={logo} alt="Logo" className={styles.logoImage} />
         </div>
-        <div>
-          <div className={styles.list}>
-            <Link to={HOME_PAGE_ROUTE} className={styles.link}>
-              Home
+        <div className={styles.list}>
+          <Link
+            to={HOME_PAGE_ROUTE}
+            className={`${styles.link} ${
+              location.pathname === HOME_PAGE_ROUTE ? styles.active : ""
+            }`}>
+            Home
+          </Link>
+          <Link
+            to={DORMITORIES_PAGE_ROUTE}
+            className={`${styles.link} ${
+              location.pathname === DORMITORIES_PAGE_ROUTE ? styles.active : ""
+            }`}>
+            Dormitories
+          </Link>
+          <Link
+            to={COMPARING_PAGE_ROUTE}
+            className={`${styles.link} ${
+              location.pathname === COMPARING_PAGE_ROUTE ? styles.active : ""
+            }`}>
+            Comparing
+          </Link>
+          {isAuth && (
+            <Link
+              to={user.role === "manager" ? MANAGER_CHAT_PAGE_ROUTE : CHAT_PAGE_ROUTE}
+              className={`${styles.link} ${
+                location.pathname ===
+                (user.role === "manager" ? MANAGER_CHAT_PAGE_ROUTE : CHAT_PAGE_ROUTE)
+                  ? styles.active
+                  : ""
+              }`}>
+              Chat
             </Link>
-            <Link to={DORMITORIES_PAGE_ROUTE} className={styles.link}>
-              Dormitories
-            </Link>
-            <Link to={COMPARING_PAGE_ROUTE} className={styles.link}>
-              Comparing
-            </Link>
-            {isAuth && (
-              <Link
-                to={user.role === "manager" ? MANAGER_CHAT_PAGE_ROUTE : CHAT_PAGE_ROUTE}
-                className={styles.link}>
-                Chat
-              </Link>
-            )}
-            <Link to={BLOG_PAGE_ROUTE} className={styles.link}>
-              Blog
-            </Link>
-          </div>
+          )}
+          <Link
+            to={BLOG_PAGE_ROUTE}
+            className={`${styles.link} ${
+              location.pathname === BLOG_PAGE_ROUTE ? styles.active : ""
+            }`}>
+            Blog
+          </Link>
+        </div>
+        <div className={styles.auth}>
           <Link
             to={
               isAuth

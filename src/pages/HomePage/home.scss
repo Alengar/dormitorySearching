@@ -123,16 +123,26 @@ h2 {
 // home
 .home {
   padding-top: 10rem;
-  text-align: center;
-  gap: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+  text-align: center;
 
   .mainText {
-    color: $blackColor;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 2.5rem;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+
+    h1 {
+      font-size: 2.5rem;
+      color: $blackColor;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
   }
+
 
   .homeImages {
     width: 100%;
@@ -492,65 +502,6 @@ h2 {
     }
   }
 }
-
-// Footer
-.footer {
-  background: $secondaryColor;
-  padding-bottom: 5rem;
-
-  .sectionContainer {
-    gap: 2.5rem;
-    .gridOne {
-      gap: 1rem;
-      justify-content: center;
-      margin: auto;
-
-      .logoDiv {
-        .Logo {
-          width: 20%;
-        }
-      }
-      .socialIcon {
-        margin-top: 1rem;
-        gap: 1rem;
-        .icon {
-          height: 40px;
-          width: 40px;
-          border-radius: 10rem;
-          border: 1px solid $borderColor;
-          box-shadow: $boxShadow;
-          padding: 0.4rem;
-          color: $grayText;
-          &:hover {
-            background: $primaryColor;
-            color: $whiteColor;
-            transition: $transition;
-          }
-        }
-      }
-    }
-    .footerLinks {
-      display: grid;
-      .linkTitle {
-        color: $blackColor;
-        font-weight: 500;
-        display: block;
-        padding-bottom: 1rem;
-      }
-      li a {
-        display: block;
-        color: $grayText;
-        transition: $transition;
-        padding: 0.3rem 0;
-        &:hover {
-          color: $primaryColor;
-          transform: translateX(7px);
-        }
-      }
-    }
-  }
-}
-
 // Adding media queries
 @media screen and (min-width: 480px) {
   // Home

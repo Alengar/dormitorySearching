@@ -4,3 +4,7 @@ export const ensureBoolean = (value) => {
   }
   return value;
 };
+
+export const calculateUnseenMessages = (messages, isManager) => {
+  return messages.filter((item) => item.isManager === isManager && item.isSeen === false).length;
+};
